@@ -1,0 +1,7 @@
+<% [:alert, :error, :notice, :success].each do |key, value| %>
+  <% if flash[key].present? %>
+    <div class="mt-5 <%= flash_class(key) %>" role="alert">
+      <%= flash[key] %>
+    </div>
+  <% end %>
+<% end %>

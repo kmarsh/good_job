@@ -1,0 +1,19 @@
+<h1><%= @job_class %></h1>
+<div class="text-muted"><%= @job_class.description %></div>
+
+<hr />
+
+<%= form_tag job_class_jobs_path(id: @job_class), method: :post do %>
+  <%- @job_class.new.method(:perform).parameters.each do |req, name| %>
+    <%- default = @job_class.params[name] && @job_class.params[name][:default] %>
+    <div class="form-group">
+      <%= label_tag name, name %>
+      <%- if @job_class.params[name] && @job_class.params[name][:options] %>
+        <%= select_tag name, options_for_select(@job_class.params[name][:options]) %>
+      <% else %>
+        <%= text_field_tag name, default.respond_to?(:call) ? default.call : default, class: "form-control" %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= submit_tag "Submit Job", class: "btn btn-primary" %>
+<% end %>

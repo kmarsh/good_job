@@ -1,0 +1,29 @@
+<div class="card my-3">
+  <div class="table-responsive">
+    <table class="table\ card-table table-bordered table-hover table-sm mb-0">
+      <thead>
+        <th>Job Class</th>
+        <th>Last Success</th>
+        <th>Last Failure</th>
+        <th>Last Duration</th>
+      </thead>
+      <tbody>
+        <% @job_classes.sort_by(&:to_s).each do |job_class| %>
+          <tr>
+            <td>
+              <%= link_to job_class, job_class_path(id: job_class.to_s) %>
+              <%- if job_class.respond_to?(:description) && job_class.description.present? %>
+                <div>
+                  <small class="text-muted"><%= job_class.description %></small>
+                </div>
+              <% end %>
+            </td>
+            <td><relative-time datetime="<%= @last_success_by_job_class[job_class.to_s]&.iso8601 %>"></relative-time></td>
+            <td><relative-time datetime="<%= @last_failure_by_job_class[job_class.to_s]&.iso8601 %>"></relative-time></td>
+            <td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

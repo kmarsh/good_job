@@ -19,7 +19,7 @@
   </script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
     <div class="container-fluid">
       <%= link_to "GoodJob 👍", root_path, class: 'navbar-brand mb-0 h1' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,13 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <%= link_to root_path, class: ["nav-link", ("active" if current_page?(root_path))] do %>
-              All jobs <span class="badge badge-secondary">More views coming soon</span>
+              All Jobs
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to job_classes_path, class: ["nav-link", ("active" if current_page?(job_classes_path))] do %>
+              Job Classes
             <% end %>
           </li>
 
