@@ -13,11 +13,15 @@
       <tbody>
         <% jobs.each do |job| %>
           <tr id="<%= dom_id(job) %>">
-            <td><%= link_to job.id, active_job_path(job.serialized_params['job_id'], anchor: dom_id(job)) %></td>
-            <td><%= link_to job.serialized_params['job_id'], active_job_path(job.serialized_params['job_id']) %></td>
+            <td>
+              <%= link_to job.id, active_job_path(job.serialized_params['job_id'], anchor: dom_id(job)) %><br />
+              <%= link_to job.serialized_params['job_id'], active_job_path(job.serialized_params['job_id']) %>
+            </td>
             <td><%= job.serialized_params['job_class'] %></td>
             <td><%= job.queue_name %></td>
-            <td><%= job.scheduled_at || job.created_at %></td>
+            <td>
+              <relative-time datetime="<%= (job.scheduled_at || job.created_at).iso8601 %>"></relative-time>
+            </td>
             <td><%= job.error %></td>
             <td><pre><%= JSON.pretty_generate(job.serialized_params) %></pre></td>
           </tr>
