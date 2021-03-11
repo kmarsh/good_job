@@ -49,11 +49,7 @@
   </nav>
 
   <div class="container-fluid">
-    <div class="card border-warning text-dark my-3">
-      <div class="card-body">
-        <p class="card-text">🚧 GoodJob's dashboard is a work in progress. Please contribute ideas and code on <a href="https://github.com/bensheldon/good_job/issues" target="_blank" rel="nofollow noopener noreferrer">Github</a>.</p>
-      </div>
-    </div>
+    <%= render partial: "/shared/flash" %>
 
     <%= yield %>
   </div>
